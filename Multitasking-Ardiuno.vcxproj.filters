@@ -30,5 +30,11 @@
     <ClInclude Include="Multitasking\Multitasking.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Multitasking\ExpressTask.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Multitasking\Instance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

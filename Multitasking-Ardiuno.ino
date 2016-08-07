@@ -1,34 +1,26 @@
 #include "Multitasking/Multitasking.h"
 
-class BlinkerTask : public TaskBase
-{
-private:
+DECLARE_TASK(BlinkerTask) CAN_SLEEP
 	byte pin;
 	bool state;
 public:
-	explicit BlinkerTask(byte pin)
-		: TaskBase(), pin(pin), state()
-	{
-		pinMode(pin, OUTPUT);
-	}
+	BlinkerTask(byte pin) : pin(pin), state() {}
 
-	virtual bool Step() override 
+BEGIN_TASK
+	pinMode(pin, OUTPUT);
+	FOREVER
 	{
-		delay(100);
 		digitalWrite(pin, state = !state);
-		return false;
+		SLEEP(100);
 	}
-};
+END_TASK
+
 
 void setup()
 {
-	Scheduler<16> scheduler;
-
-	BlinkerTask blinker(13);
-	
-	scheduler << blinker;
-
-	scheduler.Run();
+	(Instance<Scheduler<2>>::CreateNoGuard() 
+		<< Instance<BlinkerTask>::CreateNoGuard(13)
+	).Run();
 }
 
 void loop()

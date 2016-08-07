@@ -79,6 +79,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Multitasking\ExpressTask.h" />
+    <ClInclude Include="Multitasking\Instance.h" />
     <ClInclude Include="Multitasking\Multitasking.h" />
     <ClInclude Include="Multitasking\Scheduler.h" />
     <ClInclude Include="Multitasking\TaskBase.h" />
