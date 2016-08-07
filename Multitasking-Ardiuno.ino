@@ -25,8 +25,8 @@ void setup()
 	Scheduler<16> scheduler;
 
 	BlinkerTask blinker(13);
-
-	scheduler.AddTask(&blinker);
+	
+	scheduler << blinker;
 
 	scheduler.Run();
 }

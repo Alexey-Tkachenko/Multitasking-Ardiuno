@@ -6,6 +6,8 @@
 template<int MAX_TASKS, typename TaskCounter = byte>
 class Scheduler
 {
+public:
+	typedef Scheduler<MAX_TASKS, TaskCounter> self_t;
 private:
 	TaskCounter usedTasks;
 	TaskBase* tasks[MAX_TASKS];
@@ -29,6 +31,12 @@ public:
 		}
 
 		return false;
+	}
+
+	self_t& operator<<(TaskBase& task)
+	{
+		AddTask(&task);
+		return *this;
 	}
 
 	void Run()
